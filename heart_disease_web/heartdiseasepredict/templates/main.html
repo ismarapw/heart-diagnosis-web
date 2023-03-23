@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'style.css') }}">
+
+    <title>Heart Disease Prediction</title>
+</head>
+<body>
+    
+    <div class="container mt-4">
+        <div class="get-started">
+            <h1>Prediksi Penyakit Jantung</h1>
+            <p>Prediksi penyakit jantung ini dilakukan dengan menjawab beberapa pertanyaan terkait diri anda, hasil prediksi nantinya berdasarkan jawaban yang anda berikan.</p>
+            <p>Perlu diketahui hasil prediksi tidak selalu benar, untuk hasil yang lebih pasti silahkan pergi ke dokter.</p>
+            <p>Silahkan klik tombol dibawah untuk memulai. </p>
+            <button type = "button" class = "btn btn-outline-primary" id="start-btn">Jawab Pertanyaan</button>
+        </div>
+        <div class="survey">
+            <p class = "question-complete">Pertanyaan 1/16</p>
+            <form method = "POST">
+                <div class="question first-question">
+                    <p class="question-sentence">Pilih jenis kelamin anda</p>
+                    <label class = "choice-wrap form-check-label" for="sex1">
+                        <input class="form-check-input" type="radio" name="sex" id="sex1" value="Laki-laki" required>
+                        <span class="ms-1">Laki-laki</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="sex2">
+                        <input class="form-check-input" type="radio" name="sex" id="sex2" value="Perempuan">
+                        <span class="ms-1">Perempuan</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Berapakah usia anda?</p>
+                    <input type="number" min='1' class="form-control" id="umur" name = "umur" required placeholder = "Masukkan usia anda">
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Berapakah berat badan (kg) anda?</p>
+                    <input type="number" min='1' class="form-control" id="berat-badan" name = "berat-badan" required placeholder = "Masukkan berat badan anda">
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Berapakah tinggi badan (cm) anda?</p>
+                    <input type="number" min='1' class="form-control" id="tinggi-badan" name = 'tinggi-badan' required placeholder = "Masukkan tinggi badan anda">
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda punya riwayat darah tinggi?</p>
+                    <label class = "choice-wrap form-check-label" for="high-blood1">
+                        <input class="form-check-input" type="radio" name="high-blood" id="high-blood1" value="1" required>
+                        <span class = "ms-1">Punya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="high-blood2">
+                        <input class="form-check-input" type="radio" name="high-blood" id="high-blood2" value="0" required>
+                        <span class = "ms-1">Tidak Punya</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda punya riwayat penyakit diabetes?</p>
+                    <label class = "choice-wrap form-check-label" for="diabetes1">
+                        <input class="form-check-input" type="radio" name="diabetes" id="diabetes1" value="1" required>
+                        <span class = "ms-1">Punya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="diabetes2">
+                        <input class="form-check-input" type="radio" name="diabetes" id="diabetes2" value="0" required>
+                        <span class = "ms-1">Tidak Punya</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda punya riwayat penyakit koresterol?</p>
+                    <label class = "choice-wrap form-check-label" for="choresterol1">
+                        <input class="form-check-input" type="radio" name="choresterol" id="choresterol1" value="1" required>
+                        <span class = "ms-1">Punya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="choresterol2">
+                        <input class="form-check-input" type="radio" name="choresterol" id="choresterol2" value="0">
+                        <span class = "ms-1">Tidak Punya</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda adalah seorang perokok?</p>
+                    <label class = "choice-wrap form-check-label" for="smoker1">
+                        <input class="form-check-input" type="radio" name="smoker" id="smoker1" value = "1" required>
+                        <span class = "ms-1">Iya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="smoker2">
+                        <input class="form-check-input" type="radio" name="smoker" id="smoker2" value = "0">
+                        <span class = "ms-1">Tidak</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda menderita penyakit stroke?</p>
+                    <label class = "choice-wrap form-check-label" for="stroke1">
+                        <input class="form-check-input" type="radio" name="stroke" id="stroke1" value = "1" required>
+                        <span class = "ms-1">Iya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="stroke2">
+                        <input class="form-check-input" type="radio" name="stroke" id="stroke2" value = "0">
+                        <span class = "ms-1">Tidak</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda menjalani kegiatan fisik yang berat selama 30 hari terakhir ?</p>
+                    <label class = "choice-wrap form-check-label" for="phys-activity1">
+                        <input class="form-check-input" type="radio" name="phys-activity" id="phys-activity1" value = "1" required>
+                        <span class = "ms-1">Iya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="phys-activity2">
+                        <input class="form-check-input" type="radio" name="phys-activity" id="phys-activity2" value = "0">
+                        <span class = "ms-1">Tidak</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Sekarang pikirkan tentang kesehatan mental Anda, yang meliputi stres, depresi, dan masalah emosi, berapa hari selama 30 hari terakhir kesehatan mental Anda tidak baik?</p>
+                    <input type="number" min='0' max = '30' class="form-control" id="mental-hlt" name = "mental-hlt" required placeholder = "Masukkan jawaban anda">
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Sekarang pikirkan tentang kesehatan fisik Anda, yang meliputi penyakit fisik dan cedera, berapa hari selama 30 hari terakhir kesehatan fisik Anda tidak baik?</p>
+                    <input type="number" min='0' max = '30' class="form-control" id="physc-hlt" name = "physc-hlt" required placeholder = "Masukkan jawaban anda">
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda kesulitan berjalan secara normal ?</p>
+                    <label class = "choice-wrap form-check-label" for="diff-walk1">
+                        <input class="form-check-input" type="radio" name="diff-walk" id="diff-walk1" value = "1" required>
+                        <span class = "ms-1">Iya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="diff-walk2">
+                        <input class="form-check-input" type="radio" name="diff-walk" id="diff-walk2" value = "0">
+                        <span class = "ms-1">Tidak</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda memiliki rutinitas memakan buah setidaknya satu kali dalam sehari ?</p>
+                    <label class = "choice-wrap form-check-label" for="fruit1">
+                        <input class="form-check-input" type="radio" name="fruit" id="fruit1" value = "1" required>
+                        <span class = "ms-1">Iya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="fruit2">
+                        <input class="form-check-input" type="radio" name="fruit" id="fruit2" value = "0">
+                        <span class = "ms-1">Tidak</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Apakah anda memiliki rutinitas mengkonsumsi sayuran setidaknya satu kali dalam sehari ?</p>
+                    <label class = "choice-wrap form-check-label" for="veggan1">
+                        <input class="form-check-input" type="radio" name="veggan" id="veggan1" value = "1" required>
+                        <span class = "ms-1">Iya</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="veggan2">
+                        <input class="form-check-input" type="radio" name="veggan" id="veggan2" value = "0">
+                        <span class = "ms-1">Tidak</span>
+                    </label>
+                </div>
+                <div class="question">
+                    <p class="question-sentence">Secara umum, jika anda menilai diri anda dari 1-5, seberapa sehat kah anda?</p>
+                    <label class = "choice-wrap form-check-label" for="gen-hlth1">
+                        <input class="form-check-input" type="radio" name="gen-hlth" id="gen-hlth1" value="1" required>
+                        <span class = "ms-1">1</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="gen-hlth2">
+                        <input class="form-check-input" type="radio" name="gen-hlth" id="gen-hlth2" value="2">
+                        <span class = "ms-1">2</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="gen-hlth3">
+                        <input class="form-check-input" type="radio" name="gen-hlth" id="gen-hlth3" value="3">
+                        <span class = "ms-1">3</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="gen-hlth4">
+                        <input class="form-check-input" type="radio" name="gen-hlth" id="gen-hlth4" value="4">
+                        <span class = "ms-1">4</span>
+                    </label>
+                    <label class = "choice-wrap form-check-label" for="gen-hlth5">
+                        <input class="form-check-input" type="radio" name="gen-hlth" id="gen-hlth5" value="5">
+                        <span class = "ms-1">5</span>
+                    </label>
+                </div>
+                <div class="button-groups mt-4">
+                    <button type="button" class="btn btn-outline-secondary rounded" id="prev-btn">Kembali</button>
+                    <button type="button" class="btn btn-primary rounded" id = "next-btn">Lanjut</button>
+                    <button type="submit" class="btn btn-success" id ='submit-btn'>Submit</button>
+                </div>
+            </form>
+        </div>
+        
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src = "{{ url_for('static', filename = 'script.js') }}" ></script>
+</body>
+</html>
