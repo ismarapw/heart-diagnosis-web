@@ -1,5 +1,5 @@
 # Heart Diagnosis Web App
-Hello there, welcome to my repository! This project is for implementing Machine Learning Model that i've done. The aim of this project is to make a website that can predict user's heart wheteher healthy or not. You can check my repo here to elaborate how i got the model. Basically this website will ask you for several quiestion and the model will predict based on your answer.
+Hello there, welcome to my repository! This project is for implementing Machine Learning Model that i've done. The aim of this project is to make a website that can predict user's heart wheteher healthy or not. You can check my repo [here](https://github.com/ismarapw/heart-disease-prediction) to elaborate how i got the model. Basically this website will ask you for several quiestion and the model will predict based on your answer. 
 
 # Key Points
 1. Implemented flask as an inference process.
